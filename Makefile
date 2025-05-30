@@ -26,4 +26,4 @@ install: ## Set up environment
 	@poetry install
 
 run: ## Run my agent
-	@poetry run python src/gen_code/main.py
+	@cd src/gen_code && poetry run adk web
