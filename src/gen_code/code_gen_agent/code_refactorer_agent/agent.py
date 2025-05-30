@@ -1,6 +1,7 @@
 from google.adk.agents import LlmAgent
 
 from gen_code.common.models import Model
+from gen_code.code_gen_agent.common.gen_file import generate_file_callback
 
 # Code Refactorer Agent
 # Takes the original code and the review comments (read from state) and refactors the code.
@@ -30,4 +31,5 @@ Do not add any other text before or after the code block.
 """,
     description="Refactors code based on review comments.",
     output_key="refactored_code", # Stores output in state['refactored_code']
+    after_agent_callback=generate_file_callback
 )
