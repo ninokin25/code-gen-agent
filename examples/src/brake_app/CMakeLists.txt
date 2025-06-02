@@ -19,10 +19,14 @@ target_sources(brake_app PRIVATE
 target_include_directories(brake_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # --- OSごとにリンクするライブラリを切り替え ---
-if (UNIX)
+if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
     message(STATUS "No special libraries needed for Linux/UNIX")
     # Linux用の追加ライブラリがあればここに記述
-else()
+else(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
     message(STATUS "Linking ws2_32 for Windows/MinGW/MSVC")
     target_link_libraries(brake_app ws2_32)
+else()
+    message(STATUS "Host System: Unknown or Generic (${CMAKE_SYSTEM_NAME}). Assuming POSIX-like sockets available without special linking.")
+    # その他のUnix系や、CMAKE_SYSTEM_NAME が Generic の場合。
+    # 通常、POSIX準拠のシステムであれば追加のリンクは不要です。
 endif()
