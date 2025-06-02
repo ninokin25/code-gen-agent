@@ -30,7 +30,11 @@ run-adk: ## Run my agent
 
 build: ## Build example source files
 	@rm -rf examples/src/build
-	@cd examples/src && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build
+	@if [ "$(OS)" = "Windows_NT" ]; then \
+		cd examples/src && cmake -S . -B build -G "MinGW Makefiles" -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
+	else \
+		cd examples/src && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
+	fi
 
 run-brake-app: ## Run brake app
 	@./examples/src/build/brake_app/brake_app
