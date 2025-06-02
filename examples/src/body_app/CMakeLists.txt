@@ -14,7 +14,7 @@ if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
     # Linux用の追加ライブラリがあればここに記述
 elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
     message(STATUS "Linking ws2_32 for Windows/MinGW/MSVC")
-    target_link_libraries(brake_app ws2_32)
+    target_link_libraries(body_app ws2_32)
 else()
     message(STATUS "Host System: Unknown or Generic (${CMAKE_SYSTEM_NAME}). Assuming POSIX-like sockets available without special linking.")
     # その他のUnix系や、CMAKE_SYSTEM_NAME が Generic の場合。
