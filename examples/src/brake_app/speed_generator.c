@@ -38,7 +38,7 @@ void run_speed_generator(SpeedCallback cb) {
 
 // デモ用コールバック
 void print_speed(int speed) {
-    printf("[SpeedGen] 車速: %d km/h\n", speed);
+    printf("[SpeedGen] Speed: %d km/h\n", speed);
 }
 
 #ifdef SPEED_GEN_DEMO_MAIN

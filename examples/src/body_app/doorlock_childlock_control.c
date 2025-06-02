@@ -19,19 +19,19 @@ void update_door_lock_state(DoorLockState *state, int speed, bool rear_seat_occu
     // ドアロック制御
     if (speed >= SPEED_LOCK_THRESHOLD && !state->door_locked) {
         state->door_locked = true;
-        printf("[INFO] ドアロック: ON\n");
+        printf("[INFO] Door lock: ON\n");
     } else if (speed <= SPEED_UNLOCK_THRESHOLD && state->door_locked) {
         state->door_locked = false;
-        printf("[INFO] ドアロック: OFF\n");
+        printf("[INFO] Door lock: OFF\n");
     }
 
-    // チャイルドロック制御
+    // Child lock control
     if (rear_seat_occupied && state->door_locked && !state->child_lock_enabled) {
         state->child_lock_enabled = true;
-        printf("[INFO] チャイルドロック: ON\n");
+        printf("[INFO] Child lock: ON\n");
     } else if ((!rear_seat_occupied || !state->door_locked) && state->child_lock_enabled) {
         state->child_lock_enabled = false;
-        printf("[INFO] チャイルドロック: OFF\n");
+        printf("[INFO] Child lock: OFF\n");
     }
 
     // 後席乗員状態の記録

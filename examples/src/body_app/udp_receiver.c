@@ -59,14 +59,14 @@ void udp_receive_speed(void) {
         return;
     }
 
-    printf("[Receiver] UDPポート%dで待機中...\n", UDP_PORT);
+    printf("[Receiver] Waiting on UDP port %d...\n", UDP_PORT);
     while (1) {
         int n = recvfrom(sockfd, (char*)buf, UDP_BUFSIZE, 0, (struct sockaddr *)&sender_addr, &addrlen);
         if (n == UDP_BUFSIZE) {
             int speed = (buf[0]<<24) | (buf[1]<<16) | (buf[2]<<8) | buf[3];
-            printf("[Receiver] 受信: 車速=%d km/h\n", speed);
+            printf("[Receiver] Received: speed=%d km/h\n", speed);
         } else if (n > 0) {
-            printf("[Receiver] 不正なデータ受信: %d bytes\n", n);
+            printf("[Receiver] Invalid data received: %d bytes\n", n);
         } else {
             perror("recvfrom");
             break;

@@ -22,13 +22,13 @@ int udp_sender_init(UdpSender *sender, const char *ip, int port) {
 #if defined(_WIN32)
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
-        printf("WSAStartup failed\n");
+        printf("WSAStartup failed.\n");
         return -1;
     }
 #endif
     sender->sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sender->sock < 0) {
-        perror("socket");
+        perror("[Sender] socket error");
         return -1;
     }
     memset(&sender->addr, 0, sizeof(sender->addr));
@@ -57,7 +57,7 @@ int udp_send_speed(UdpSender *sender, int speed) {
     int ret = sendto(sender->sock, (const char*)buf, 4, 0,
                      (struct sockaddr*)&sender->addr, sizeof(sender->addr));
     if (ret < 0) {
-        perror("sendto");
+        perror("[Sender] sendto error");
         return -1;
     }
     return 0;

@@ -18,12 +18,12 @@ void send_speed_callback(int speed) {
     static bool initialized = false;
     if (!initialized) {
         if (udp_sender_init(&sender, DEST_IP, DEST_PORT) != 0) {
-            printf("[Sender] UDP初期化失敗\n");
+            printf("[Sender] UDP initialization failed.\n");
             return;
         }
         initialized = true;
     }
-    printf("[Sender] 送信: 車速=%d km/h\n", speed);
+    printf("[Sender] Send: speed=%d km/h\n", speed);
     udp_send_speed(&sender, speed);
 }
 
