@@ -25,5 +25,12 @@ install: ## Set up environment
 	@poetry config virtualenvs.in-project true
 	@poetry install
 
-run: ## Run my agent
+run-adk: ## Run my agent
 	@cd src/gen_code && poetry run adk web
+
+build: ## Build example source files
+	@rm -rf examples/src/build
+	@cd examples/src && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build
+
+run-brake-app: ## Run brake app
+	@./examples/src/build/brake_app/brake_app
