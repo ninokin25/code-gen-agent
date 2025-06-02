@@ -22,7 +22,7 @@ target_include_directories(brake_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
     message(STATUS "No special libraries needed for Linux/UNIX")
     # Linux用の追加ライブラリがあればここに記述
-else(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
     message(STATUS "Linking ws2_32 for Windows/MinGW/MSVC")
     target_link_libraries(brake_app ws2_32)
 else()
