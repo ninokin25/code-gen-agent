@@ -38,3 +38,6 @@ build: ## Build example source files
 
 run-brake-app: ## Run brake app
 	@./examples/src/build/brake_app/brake_app
+
+run-body-app: ## Run body app
+	@./examples/src/build/body_app/body_app
