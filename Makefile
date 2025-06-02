@@ -29,12 +29,15 @@ run-adk: ## Run my agent
 	@cd src/gen_code && poetry run adk web
 
 build: ## Build example source files
-	@rm -rf examples/src/build
+	@rm -rf examples/build
 	@if [ "$(OS)" = "Windows_NT" ]; then \
-		cd examples/src && cmake -S . -B build -G "MinGW Makefiles" -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
+		cd examples && cmake -S . -B build -G "MinGW Makefiles" -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
 	else \
-		cd examples/src && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
+		cd examples && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
 	fi
+
+tests: build ## Test application
+	@cd examples/build/tests && ctest -VV -O test.log
 
 run-brake-app: ## Run brake app
 	@./examples/src/build/brake_app/brake_app

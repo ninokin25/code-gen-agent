@@ -6,6 +6,7 @@
 #define LOCK_SPEED_THRESHOLD 20
 
 static int manual_override_timer = 0;
+
 static DoorLockState door_lock_state = UNLOCKED;
 static DoorLockHistory history = {UNLOCK, 0, false};
 

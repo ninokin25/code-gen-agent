@@ -5,7 +5,6 @@ project(code_gen_agent_examples C)
 add_subdirectory(brake_app)
 add_subdirectory(body_app)
 
-
 # --------------------------------------------------------------------------------------
 # debug information
 # --------------------------------------------------------------------------------------
