@@ -20,13 +20,28 @@
 #define UDP_BUFSIZE 4
 
 
-// 受信処理本体を関数化
-void udp_receive_speed(void) {
+#include <stdatomic.h>
+static volatile int latest_vehicle_speed = 0;
+
+
+#ifdef _WIN32
+#include <windows.h>
+static HANDLE udp_thread_handle = NULL;
+#else
+#include <pthread.h>
+static pthread_t udp_thread_id;
+#endif
+
+int get_latest_vehicle_speed(void) {
+    return latest_vehicle_speed;
+}
+
+static void* udp_receive_thread(void* arg) {
 #ifdef _WIN32
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
         printf("WSAStartup failed\n");
-        return;
+        return 0;
     }
 #endif
     int sockfd;
@@ -41,7 +56,7 @@ void udp_receive_speed(void) {
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) {
         perror("socket");
-        return;
+        return 0;
     }
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
@@ -56,7 +71,7 @@ void udp_receive_speed(void) {
 #else
         close(sockfd);
 #endif
-        return;
+        return 0;
     }
 
     printf("[Receiver] Waiting on UDP port %d...\n", UDP_PORT);
@@ -64,7 +79,7 @@ void udp_receive_speed(void) {
         int n = recvfrom(sockfd, (char*)buf, UDP_BUFSIZE, 0, (struct sockaddr *)&sender_addr, &addrlen);
         if (n == UDP_BUFSIZE) {
             int speed = (buf[0]<<24) | (buf[1]<<16) | (buf[2]<<8) | buf[3];
-            printf("[Receiver] Received: speed=%d km/h\n", speed);
+            latest_vehicle_speed = speed;
         } else if (n > 0) {
             printf("[Receiver] Invalid data received: %d bytes\n", n);
         } else {
@@ -77,5 +92,14 @@ void udp_receive_speed(void) {
     WSACleanup();
 #else
     close(sockfd);
+#endif
+    return 0;
+}
+
+void start_udp_speed_receiver(void) {
+#ifdef _WIN32
+    udp_thread_handle = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)udp_receive_thread, NULL, 0, NULL);
+#else
+    pthread_create(&udp_thread_id, NULL, udp_receive_thread, NULL);
 #endif
 }

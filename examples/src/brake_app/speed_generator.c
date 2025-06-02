@@ -18,7 +18,7 @@
 typedef void (*SpeedCallback)(int speed);
 
 // サンプル車速パターン
-static int speed_pattern[] = {0, 5, 12, 20, 15, 8, 0};
+static int speed_pattern[] = {0, 5, 12, 20, 35, 40, 50, 60, 35, 20, 18, 7, 0, 0, 0};
 static int speed_pattern_len = sizeof(speed_pattern) / sizeof(speed_pattern[0]);
 
 // 車速生成メインループ

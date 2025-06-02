@@ -4,7 +4,11 @@ project(body_app C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(body_app main.c doorlock_childlock_control.c udp_receiver.c)
+add_executable( body_app
+    main.c
+    doorlock_control.c
+    udp_receiver.c
+)
 
 target_include_directories(body_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
