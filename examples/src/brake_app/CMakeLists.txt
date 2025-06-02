@@ -18,7 +18,11 @@ target_sources(brake_app PRIVATE
 
 target_include_directories(brake_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Windows用: ws2_32ライブラリをリンク
-if (WIN32)
-    target_link_libraries(brake_app PRIVATE ws2_32) # ここも PRIVATE を明示するとより一貫します
+# --- OSごとにリンクするライブラリを切り替え ---
+if (UNIX)
+    message(STATUS "No special libraries needed for Linux/UNIX")
+    # Linux用の追加ライブラリがあればここに記述
+else()
+    message(STATUS "Linking ws2_32 for Windows/MinGW/MSVC")
+    target_link_libraries(brake_app ws2_32)
 endif()

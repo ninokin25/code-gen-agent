@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef _WIN32
+#if defined(_WIN32)
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #else
@@ -19,7 +19,7 @@
 #include "udp_sender.h"
 
 int udp_sender_init(UdpSender *sender, const char *ip, int port) {
-#ifdef _WIN32
+#if defined(_WIN32)
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
         printf("WSAStartup failed\n");
@@ -39,7 +39,7 @@ int udp_sender_init(UdpSender *sender, const char *ip, int port) {
 }
 
 void udp_sender_close(UdpSender *sender) {
-#ifdef _WIN32
+#if defined(_WIN32)
     closesocket(sender->sock);
     WSACleanup();
 #else
