@@ -2,11 +2,69 @@
 # Project Ignores                       #
 #---------------------------------------#
 .pre-commit
+build/
+dist/
 
 #---------------------------------------#
 # IDEs & Editors Ignores                #
 #---------------------------------------#
 .vscode/
+
+#---------------------------------------#
+# C Ignores                             #
+#---------------------------------------#
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
 
 #---------------------------------------#
 # Python Ignores                        #
@@ -119,10 +177,8 @@ ipython_config.py
 #pdm.lock
 #   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
 #   in version control.
-#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
+#   https://pdm.fming.dev/#use-with-ide
 .pdm.toml
-.pdm-python
-.pdm-build/
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
@@ -173,3 +229,50 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+#---------------------------------------#
+# Miscellaneous Ignores                 #
+#---------------------------------------#
+# OS dependent files
+*.db
+.DS_Store
+
+# Backup files
+*~
+*.orig
+*.bak
+*.hbk
+
+# Packages
+*.7z
+*.bz2
+*.cab
+*.dmg
+*.gz
+*.iso
+*.lzh
+*.ear
+*.jar
+*.nar
+*.rar
+*.tar
+*.tar.z
+*.tbz2
+*.war
+*.zip
+
+# Log files
+*.log
+
+# Temporary files
+# -- Office --
+~$*
+*.tmp
+# -- vim --
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+# -- Emacs --
+.\#*
