@@ -11,6 +11,12 @@ You need to meet the following requirements.
 - Python 3.10+
 - [Poetry](https://python-poetry.org/)
 
+In addition, you need to install the following libraries:
+
+```
+$ sudo apt update && sudo apt install build-essential cmake ninja-build clang gcc-multilib g++-multilib
+```
+
 ## Quick Start
 
 At first, you need to create a `.env` file as follows:
