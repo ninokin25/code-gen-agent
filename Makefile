@@ -25,7 +25,7 @@ install: ## Set up environment
 	@poetry config virtualenvs.in-project true
 	@poetry install
 
-run-adk: ## Run my agent
+adk: ## Run my agent
 	@cd src/gen_code && poetry run adk web
 
 build: ## Build example source files
