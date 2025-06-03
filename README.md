@@ -13,8 +13,8 @@ You need to meet the following requirements.
 
 In addition, you need to install the following libraries:
 
-```
-$ sudo apt update && sudo apt install build-essential cmake ninja-build clang gcc-multilib g++-multilib
+```bash
+sudo apt update && sudo apt install build-essential cmake ninja-build clang gcc-multilib g++-multilib
 ```
 
 ## Quick Start
