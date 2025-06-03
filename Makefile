@@ -40,7 +40,7 @@ tests: build ## Test application
 	@cd examples/build/tests && ctest -VV -O test.log
 
 run-brake-app: ## Run brake app
-	@./examples/src/build/brake_app/brake_app
+	@./examples/build/src/brake_app/brake_app
 
 run-body-app: ## Run body app
-	@./examples/src/build/body_app/body_app
+	@./examples/build/src/body_app/body_app
