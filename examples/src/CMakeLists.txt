@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(code_gen_agent_examples C)
+cmake_policy(SET CMP0135 NEW)
 
 
 add_subdirectory(brake_app)
