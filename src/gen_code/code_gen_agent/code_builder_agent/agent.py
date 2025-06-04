@@ -1,17 +1,19 @@
 from google.adk.agents import LlmAgent
 
 from gen_code.code_gen_agent.common.models import Model
-from gen_code.code_gen_agent.common.gen_file import generate_file_callback
 from .prompt import agent_instruction
+from .tools import build_tool
 
-# Code Refactorer Agent
+# Code Builder Agent
 # Takes the original code and the review comments (read from state) and refactors the code.
-code_refactorer_agent = LlmAgent(
-    name="CodeRefactorerAgent",
+code_builder_agent = LlmAgent(
+    name="CodeBuilderAgent",
     model=Model.GEMINI_2_0_FLASH,
     # Change 3: Improved instruction, correctly using state key injection
     instruction=agent_instruction,
-    description="Refactors code based on review comments.",
-    output_key="refactored_code", # Stores output in state['refactored_code']
-    after_agent_callback=generate_file_callback
+    description="Build code generated from requirements.",
+    output_key="build_result", # Stores output in state['build_result']
+    tools=[
+        build_tool
+    ]
 )

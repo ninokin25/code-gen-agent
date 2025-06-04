@@ -1,4 +1,4 @@
-.PHONY: help run
+.PHONY: help run clean install adk build tests run-brake-app run-body-app
 
 SHELL := /bin/bash
 
@@ -31,12 +31,22 @@ adk: ## Run my agent
 build: ## Build example source files
 	@rm -rf examples/build
 	@if [ "$(OS)" = "Windows_NT" ]; then \
+		cd examples && cmake -S . -B build -G "MinGW Makefiles" -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && \
+		cmake --build build --target body_app && \
+		cmake --build build --target brake_app; \
+	else \
+		cd examples && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && \
+		cmake --build build --target body_app && \
+		cmake --build build --target brake_app; \
+	fi
+
+tests: ## Test application
+	@rm -rf examples/build
+	@if [ "$(OS)" = "Windows_NT" ]; then \
 		cd examples && cmake -S . -B build -G "MinGW Makefiles" -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
 	else \
 		cd examples && cmake -S . -B build -G Ninja -D CMAKE_TOOLCHAIN_FILE=cmake/gcc.cmake && cmake --build build; \
 	fi
-
-tests: build ## Test application
 	@cd examples/build/tests && ctest -VV -O test.log
 
 run-brake-app: ## Run brake app

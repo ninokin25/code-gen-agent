@@ -5,7 +5,7 @@ cmake_policy(SET CMP0135 NEW)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable( body_app
+add_executable(body_app
     main.c
     doorlock_control.c
     udp_receiver.c
