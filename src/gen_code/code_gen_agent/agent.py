@@ -22,7 +22,7 @@ code_refinement_loop = LoopAgent(
 
 test_refinement_loop = LoopAgent(
     name="TestRefinementLoop",
-    # Agent order is crucial: Review First, then refactoring and build code.
+    # Agent order is crucial: Write tests First, then executing tests.
     sub_agents=[
         test_writer_agent,
         test_runner_agent,
@@ -35,7 +35,6 @@ root_agent  = SequentialAgent(
     sub_agents=[
         code_writer_agent,
         code_refinement_loop,
-        # test_writer_agent
         test_refinement_loop
     ],
     description="Executes a sequence of code writing, reviewing, and refactoring.",
