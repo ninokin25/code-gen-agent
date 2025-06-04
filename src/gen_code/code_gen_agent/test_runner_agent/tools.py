@@ -27,6 +27,7 @@ def execute_tests(
               In case of an error, an 'error_message' key may also be included.
     """
     # Use the directory specified in the arguments, or the default path if not specified
+    target_directory = DEFAULT_TEST_ROOT_PATH
     if target_directory is None:
         effective_test_directory = DEFAULT_TEST_ROOT_PATH
         print(f"  [Tool Call] No target directory specified for {tool_context.agent_name}, using default: {effective_test_directory}")
