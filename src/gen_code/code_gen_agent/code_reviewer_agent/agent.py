@@ -1,6 +1,6 @@
 from google.adk.agents import LlmAgent
 
-from gen_code.common.models import Model
+from gen_code.code_gen_agent.common.models import Model
 from .prompt import agent_instruction
 
 # Code Reviewer Agent

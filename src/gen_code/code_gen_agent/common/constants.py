@@ -1,5 +1,8 @@
 from types import MappingProxyType
 from typing import Mapping
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[4]
 
 # 定数名は慣習に従い大文字のスネークケースにします。
 # この辞書がエージェント名と生成コードのキーをマッピングしていると仮定して命名します。
