@@ -8,8 +8,7 @@ from .prompt import agent_instruction
 code_reviewer_agent = LlmAgent(
     name="CodeReviewerAgent",
     model=Model.GEMINI_2_0_FLASH.value,
-    # Change 3: Improved instruction, correctly using state key injection
     instruction=agent_instruction,
     description="Reviews code and provides feedback.",
-    output_key="review_comments", # Stores output in state['review_comments']
+    output_key="review_comments",
 )

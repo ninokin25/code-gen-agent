@@ -9,9 +9,8 @@ from .prompt import agent_instruction
 code_refactorer_agent = LlmAgent(
     name="CodeRefactorerAgent",
     model=Model.GEMINI_2_0_FLASH,
-    # Change 3: Improved instruction, correctly using state key injection
     instruction=agent_instruction,
     description="Refactors code based on review comments.",
-    output_key="refactored_code", # Stores output in state['refactored_code']
+    output_key="refactored_code",
     after_agent_callback=generate_file_callback
 )

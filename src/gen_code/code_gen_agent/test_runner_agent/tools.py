@@ -4,9 +4,9 @@ from typing import Optional
 from google.adk.tools import FunctionTool
 from google.adk.tools.tool_context import ToolContext
 
-_PROJECT_ROOT = Path(__file__).resolve().parents[4]
-# Set the default test execution directory to the project root
-DEFAULT_TEST_ROOT_PATH = str(_PROJECT_ROOT)
+from gen_code.code_gen_agent.common.constants import ROOT_DIR
+
+DEFAULT_TEST_ROOT_PATH = str(ROOT_DIR)
 
 def execute_tests(
         tool_context: ToolContext,

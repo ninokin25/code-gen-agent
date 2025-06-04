@@ -6,7 +6,6 @@ from typing import Optional, Dict, Any
 from google.adk.agents.callback_context import CallbackContext
 from google.genai import types
 
-# AGENT_STATE_KEYS を共通コンスタントからインポート
 from gen_code.code_gen_agent.common.constants import AGENT_STATE_KEYS, ROOT_DIR
 
 def generate_test_callback(

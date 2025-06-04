@@ -9,10 +9,9 @@ from .tools import build_tool
 code_builder_agent = LlmAgent(
     name="CodeBuilderAgent",
     model=Model.GEMINI_2_0_FLASH,
-    # Change 3: Improved instruction, correctly using state key injection
     instruction=agent_instruction,
     description="Build code generated from requirements.",
-    output_key="build_result", # Stores output in state['build_result']
+    output_key="build_result",
     tools=[
         build_tool
     ]
