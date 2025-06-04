@@ -10,7 +10,6 @@ from google.genai import types
 from gen_code.code_gen_agent.common.constants import ROOT_DIR
 from gen_code.code_gen_agent.common.constants import AGENT_STATE_KEYS
 
-# _extract_c_code_from_markdown は変更なし (必要であれば定義してください)
 def _extract_c_code_from_markdown(markdown_code: str) -> str:
     if not isinstance(markdown_code, str):
         return ""
@@ -51,7 +50,6 @@ def _extract_specific_codes_from_json_output(json_string: str, header_key: str, 
         print(f"[Callback] Error: Unexpected error during JSON parsing: {e}")
         return {}
 
-# === ここに _write_code_to_file 関数を定義 ===
 def _write_code_to_file(filepath: str, code: str, agent_name: str, file_type: str):
     """指定されたパスにコードを書き込むヘルパー関数"""
     try:
@@ -67,7 +65,6 @@ def _write_code_to_file(filepath: str, code: str, agent_name: str, file_type: st
         print(f"[Callback] IOError writing {file_type} from agent '{agent_name}' to {filepath}: {e}")
     except Exception as e:
         print(f"[Callback] An unexpected error occurred writing {file_type} for agent '{agent_name}': {e}")
-# === ここまで ===
 
 def generate_file_callback(
     callback_context: CallbackContext
@@ -129,8 +126,9 @@ def generate_file_callback(
     elif agent_name == "CodeRefactorerAgent":
         header_key = "refactored_header_file_content"
         source_key = "refactored_source_file_content"
-        output_filename_suffix_h = "_refactored.h"
-        output_filename_suffix_c = "_refactored.c"
+        output_base_filename = "doorlock_control"
+        # output_filename_suffix_h = "_refactored.h"
+        # output_filename_suffix_c = "_refactored.c"
         extracted_codes = _extract_specific_codes_from_json_output(llm_output_str, header_key, source_key)
     else:
         print(f"[Callback] Info: Agent '{agent_name}' does not have specific multi-file JSON generation logic in callback. Trying single file markdown extraction.")
