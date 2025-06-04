@@ -111,7 +111,7 @@ def generate_file_callback(
         return None
 
     output_base_filename = f"file_{agent_name.lower().replace('agent', '')}"
-        output_dir_path = ROOT_DIR / "examples" / "src" / "body_app"
+    output_dir_path = ROOT_DIR / "examples" / "src" / "body_app"
 
     extracted_codes: Dict[str, str] = {}
     header_key = ""
