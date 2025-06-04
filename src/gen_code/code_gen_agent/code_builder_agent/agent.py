@@ -1,6 +1,6 @@
 from google.adk.agents import LlmAgent
 
-from gen_code.common.models import Model
+from gen_code.code_gen_agent.common.models import Model
 from gen_code.code_gen_agent.common.gen_file import generate_file_callback
 from .prompt import agent_instruction
 from .tools import build_source_code

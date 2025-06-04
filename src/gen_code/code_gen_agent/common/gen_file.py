@@ -6,7 +6,7 @@ from functools import partial # functools.partial をインポート
 from google.adk.agents.callback_context import CallbackContext
 from google.genai import types # Optional: types.Content を返す場合に必要
 
-from gen_code.common.constants import ROOT_DIR
+from gen_code.code_gen_agent.common.constants import ROOT_DIR
 from gen_code.code_gen_agent.common.constants import AGENT_STATE_KEYS
 
 # ヘルパー関数: MarkdownコードブロックからCコードを抽出
