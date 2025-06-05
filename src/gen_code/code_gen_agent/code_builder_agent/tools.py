@@ -1,6 +1,7 @@
 import subprocess
-from google.adk.tools import FunctionTool
 from pathlib import Path
+from google.adk.tools import FunctionTool
+from google.adk.tools.tool_context import ToolContext
 
 # このファイルの場所に基づいてプロジェクトのルートディレクトリを決定します。
 # tools.py が <project_root>/src/gen_code/code_gen_agent/code_builder_agent/tools.py にあると仮定します。
@@ -9,7 +10,10 @@ _PROJECT_ROOT = Path(__file__).resolve().parents[4]
 # DEFAULT_EXAMPLES_PATH = str(_PROJECT_ROOT / "examples")
 DEFAULT_EXAMPLES_PATH = str(_PROJECT_ROOT)
 
-def build_source_code(build_directory: str = DEFAULT_EXAMPLES_PATH) -> dict:
+def build_source_code(
+        build_directory: str,
+        tool_context: ToolContext
+    ) -> dict:
     """
     Builds the source code by executing 'make build' in the specified directory.
     Typically targets the 'examples' directory of the project.
@@ -50,6 +54,8 @@ def build_source_code(build_directory: str = DEFAULT_EXAMPLES_PATH) -> dict:
         )
 
         if process.returncode == 0:
+            tool_context.actions.escalate = True  # Exit loop
+            print(f"  [Tool Call] exit_loop triggered by {tool_context.agent_name}")
             return {
                 "status": "success",
                 "stdout": process.stdout,

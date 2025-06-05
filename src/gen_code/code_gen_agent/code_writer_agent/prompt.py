@@ -1,4 +1,3 @@
-# /home/user/workspace/code-gen-agent/src/gen_code/code_gen_agent/code_writer_agent/prompt.py
 agent_instruction = """You are a C Code Generator.
 Based *only* on the user's request, write C code that fulfills the requirement.
 You MUST generate content for both a C source file (.c) and a C header file (.h).

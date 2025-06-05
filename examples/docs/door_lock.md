@@ -95,9 +95,15 @@
 
 ### 4.2 内部インターフェース
 
-- `DoorLockCommand update_door_lock_state(int vehicle_speed_kph, ShiftPosition shift_position);`
-  - 概要：車速・シフトレンジをもとにロック指令を返す関数
-  - 引数：`int vehicle_speed_kph`, `ShiftPosition shift_position`
+- `DoorLockCommand update_door_lock_state(int vehicle_speed_kph, ShiftPosition shift_position, DoorLockCommand driver_lock_switch, DoorLockCommand passenger_lock_switch, DoorLockCommand rear_lock_switch, uint32_t current_time_ms);`
+  - 概要：車速・シフトレンジ・各ロックスイッチ・現在時刻をもとにロック指令を返す関数
+  - 引数：
+    - `int vehicle_speed_kph`：車速 [km/h]
+    - `ShiftPosition shift_position`：シフトレンジ
+    - `DoorLockCommand driver_lock_switch`：運転席ロックスイッチ信号
+    - `DoorLockCommand passenger_lock_switch`：助手席ロックスイッチ信号
+    - `DoorLockCommand rear_lock_switch`：後席ロックスイッチ信号
+    - `uint32_t current_time_ms`：現在時刻 [ms]
   - 戻り値：`DoorLockCommand`（LOCKまたはUNLOCK）
   - 処理周期：100ms（10Hz）で周期実行
 

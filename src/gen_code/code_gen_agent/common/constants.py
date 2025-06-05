@@ -9,4 +9,5 @@ ROOT_DIR = Path(__file__).resolve().parents[4]
 AGENT_STATE_KEYS: Mapping[str, str] = MappingProxyType({
     "CodeWriterAgent": "generated_code",
     "CodeRefactorerAgent": "refactored_code",
+    "TestWriterAgent": "generated_test_code",
 })
