@@ -24,6 +24,7 @@ clean: ## Cleanup
 install: ## Set up environment
 	@poetry config virtualenvs.in-project true
 	@poetry install
+	@./tools/setup.sh
 
 adk: ## Run my agent
 	@cd src/gen_code && poetry run adk web
