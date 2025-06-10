@@ -6,8 +6,7 @@ from .code_refactorer_agent.agent import code_refactorer_agent
 from .code_builder_agent.agent import code_builder_agent
 from .test_writer_agent.agent import test_writer_agent
 from .test_runner_agent.agent import test_runner_agent
-
-MAX_ITERATIONS = 5
+from .common.config import DEFAULT_MAX_ITERATIONS
 
 code_refinement_loop = LoopAgent(
     name="CodeRefinementLoop",
@@ -17,7 +16,7 @@ code_refinement_loop = LoopAgent(
         code_refactorer_agent,
         code_builder_agent,
     ],
-    max_iterations=MAX_ITERATIONS # Limit loops
+    max_iterations=DEFAULT_MAX_ITERATIONS # Max iterations sourced from common.config
 )
 
 test_refinement_loop = LoopAgent(
@@ -27,7 +26,7 @@ test_refinement_loop = LoopAgent(
         test_writer_agent,
         test_runner_agent,
     ],
-    max_iterations=MAX_ITERATIONS # Limit loops
+    max_iterations=DEFAULT_MAX_ITERATIONS # Max iterations sourced from common.config
 )
 
 root_agent  = SequentialAgent(
